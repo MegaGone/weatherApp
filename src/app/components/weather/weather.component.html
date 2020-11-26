@@ -1,0 +1,76 @@
+<div class="row p-4">
+    <div class="col-lg-5">
+
+        <!-- Modal -->
+        <div *ngIf="status == 'failed'" class="modal fade failed" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Please insert some values.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Understand</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+
+        <div class="container card card-body">
+            <div class="col-lg-12 text-center">
+                <img src="../../../assets/img/nublado.svg" alt="clima" width="180">
+            </div>
+
+            <!-- Form -->
+            <form #formu="ngForm" name="form" [formGroup]="form" (submit)="onSubmit(name, code, formu)">
+                <div class="form-row form-group">
+                    <div class="col-lg-12">
+                        <input #name autocomplete="off" placeholder="City Name" type="text" class="form-control"
+                            id="validationCustom01" formControlName="cityName"
+                            [ngClass]="{'is-invalid':form.get('cityName').touched && form.get('cityName').invalid}"
+                            pattern="[a-zA-Z]+" required>
+                        <div class="invalid-feedback">
+                            City name is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="col-lg-12">
+                        <input #code autocomplete="off" placeholder="Country Code" type="text" class="form-control"
+                            id="validationCustom01" formControlName="countryCode"
+                            [ngClass]="{'is-invalid':form.get('countryCode').touched && form.get('countryCode').invalid}">
+                        <div class="invalid-feedback" required>
+                            Country code is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-dark btn-block mt-2" data-toggle="modal" data-target="#staticBackdrop">Get
+                        Weather!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div *ngIf="weather" class="card card-body">
+            <h2 class="text-center font-weight-bold">{{weather.name}}</h2>
+            <p><span class="font-italic">Temperature:</span> {{weather.main.temp}}°C</p>
+            <p><span class="font-italic">Latitude:</span> {{weather.coord.lat}}</p>
+            <p><span class="font-italic">Longitude:</span> {{weather.coord.lon}}</p>
+            <p><span class="font-italic">Humidity:</span> {{weather.main.humidity}}</p>
+            <p><span class="font-italic">Pressure:</span> {{weather.main.pressure}}</p>
+            <p><span class="font-italic">Description:</span> {{weather.weather[0].description}}</p>
+        </div>
+    </div>
+</div>
