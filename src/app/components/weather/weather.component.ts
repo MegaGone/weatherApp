@@ -11,6 +11,7 @@ export class WeatherComponent implements OnInit {
   public weather;
   public title: string;
   public status: string;
+  public stat: string;
 
   form = new FormGroup({
     cityName: new FormControl('', Validators.required),
@@ -31,7 +32,10 @@ export class WeatherComponent implements OnInit {
           console.log(res),
             this.weather = res
         },
-        err => console.log(<any>err)
+        err => {
+          console.log(<any>err), 
+          this.stat = "show"
+        } 
       )
   }
 
@@ -42,9 +46,9 @@ export class WeatherComponent implements OnInit {
       code.value = '';
       this.status = 'success';
     } else {
-      //alert('Please insert some values');
       this.status = 'failed';
     }
-
+    name.focus();
+    form.reset();
   };
 }
