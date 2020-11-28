@@ -2,3 +2,22 @@
 body{
     background: #ecf0f1;
 }
+
+#copy{
+    color: #70a1ff;
+}
+
+.icon{
+    color: white;
+    transition: all 300ms;
+}
+
+.icon:hover{
+    color: #ced6e0;
+}
+
+@media(max-width:767px){
+    #info{
+        margin-top: 20px;
+    }
+}

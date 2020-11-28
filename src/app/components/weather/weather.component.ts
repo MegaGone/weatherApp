@@ -33,8 +33,8 @@ export class WeatherComponent implements OnInit {
             this.weather = res
         },
         err => {
-          console.log(<any>err), 
-          this.stat = "show"
+          this.stat = "show",
+          console.log(<any>err)
         } 
       )
   }
